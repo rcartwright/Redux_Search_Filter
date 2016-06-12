@@ -1,0 +1,30 @@
+{
+  "name": "Redux_Search_Filter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "bootstrap-less": "^3.3.8",
+    "browserify": "^11.0.1",
+    "events": "^1.1.0",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-eslint": "^1.1.1",
+    "gulp-less": "^3.0.5",
+    "gulp-open": "^1.0.0",
+    "object-assign": "^4.1.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-router": "^2.4.1",
+    "reactify": "^1.1.1",
+    "vinyl-source-stream": "^1.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
