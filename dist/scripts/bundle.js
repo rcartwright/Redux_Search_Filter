@@ -24137,12 +24137,64 @@ var formReducer = reducer;
 var fields = ['search'];
 var stuff = {"name": "rachel"}
 
+var rootReducer = combineReducers({
+  form: formReducer, helloReducer
+});
+
+
+
+/*var helloReducer = (state= {message:'none'}, action) => {    
+ switch (action.type) {
+    case 'HELLO':
+      return Object.assign(state,{message:"hello world"});
+    default:
+      return state;
+  }  
+};*/
+
+var addData = { search: 'search' }
+
+var helloReducer = (state={search:'none'}, action) => {
+  switch (action.type) {
+    case 'INCREASE': return state+1
+    default: return state
+  }
+}
+
+function configureStore() {
+  var store = createStore(rootReducer);
+  return store;
+};
+
+var store = configureStore()
+
+// Map Redux state to component props
+function mapStateToProps(state) {
+  return {
+    search: state
+  }
+}
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  return {
+    handleSubmit: () => dispatch(addData)
+  }
+}
+
+// Connected Component
+//const App = connect(mapStateToProps, mapDispatchToProps)(Counter)
+var App = connect(mapStateToProps, mapDispatchToProps)(SearchFormApp)
+
+
 var SearchFormApp = React.createClass({displayName: "SearchFormApp",
 	handleSubmit: function(data) {
 		var dispatch = this.props.dispatch;
+		store.dispatch(addData(data))
+		console.log(dispatch)
     	console.log('handleSubmit initiated');
     	console.log(data);
-    	//alert(JSON.stringify(data));
+    	alert(JSON.stringify(data));
 
 	},
   	render: function() {
@@ -24180,24 +24232,14 @@ var SimpleForm = reduxForm({
   fields
 })(SearchForm);
 
-function mapStateToProps(state) {
+/*function mapStateToProps(state) {
   return {
   };
 }
 
-var App = connect(mapStateToProps)(SearchFormApp)
 
-var rootReducer = combineReducers({
-  form: formReducer,
-});
 
-function configureStore() {
-  var store = createStore(rootReducer);
-  return store;
-};
-
-var store = configureStore()
-
+console.log(store)*/
 
 render(
   React.createElement(Provider, {store: store}, 
